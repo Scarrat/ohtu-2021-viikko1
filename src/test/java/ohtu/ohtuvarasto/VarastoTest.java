@@ -113,7 +113,7 @@ public class VarastoTest {
         varasto.lisaaVarastoon(5);
         varasto.otaVarastosta(-1);
 
-        assertEquals(6, varasto.paljonkoMahtuu(),vertailuTarkkuus);
+        assertEquals(5, varasto.paljonkoMahtuu(),vertailuTarkkuus);
     }
     @Test
     public void toStringtest() {
