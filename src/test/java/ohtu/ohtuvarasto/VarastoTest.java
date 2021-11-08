@@ -13,11 +13,13 @@ import static org.junit.Assert.*;
 public class VarastoTest {
 
     Varasto varasto;
+    Varasto varasto2;
     double vertailuTarkkuus = 0.0001;
 
     @Before
     public void setUp() {
         varasto = new Varasto(10);
+        varasto2 = new Varasto(10,10);
     }
 
     @Test
@@ -63,6 +65,60 @@ public class VarastoTest {
 
         // varastossa pitäisi olla tilaa 10 - 8 + 2 eli 4
         assertEquals(4, varasto.paljonkoMahtuu(), vertailuTarkkuus);
+    }
+    @Test
+    public void liikaaOtto() {
+        varasto.otaVarastosta(11);
+
+
+        assertEquals(10, varasto.paljonkoMahtuu(), vertailuTarkkuus);
+    }
+    @Test
+    public void liikaaLaitto() {
+        varasto.lisaaVarastoon(11);
+
+        assertEquals(0, varasto.paljonkoMahtuu(), vertailuTarkkuus);
+    }
+     @Test
+    public void huonoAlotus() {
+        Varasto varasto3 = new Varasto(10,11);
+
+        assertEquals(0, varasto3.paljonkoMahtuu(),vertailuTarkkuus);
+    }
+    @Test
+    public void huonoAlotus2() {
+        Varasto varasto4 = new Varasto(-1);
+
+        assertEquals(0, varasto4.paljonkoMahtuu(),vertailuTarkkuus);
+    }
+    @Test
+    public void huonoAlotus3() {
+        Varasto varasto5 = new Varasto(0,10);
+
+        assertEquals(0, varasto5.paljonkoMahtuu(),vertailuTarkkuus);
+    }@Test
+    public void huonoAlotus4() {
+        Varasto varasto5 = new Varasto(10,-1);
+
+        assertEquals(10, varasto5.paljonkoMahtuu(),vertailuTarkkuus);
+    }
+    @Test
+    public void eiLisata() {
+        varasto.lisaaVarastoon(-1);
+
+        assertEquals(10, varasto.paljonkoMahtuu(),vertailuTarkkuus);
+    }
+    @Test
+    public void eiOteta() {
+        varasto.lisaaVarastoon(5);
+        varasto.otaVarastosta(-1);
+
+        assertEquals(5, varasto.paljonkoMahtuu(),vertailuTarkkuus);
+    }
+    @Test
+    public void toStringtest() {
+        varasto.lisaaVarastoon(5);
+        assertEquals(varasto.toString(), varasto.toString());
     }
 
 }
