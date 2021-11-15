@@ -81,4 +81,4 @@ public class Varasto {
         return ("saldo = " + saldo + ", vielä tilaa " + paljonkoMahtuu());
     }
 } 
-}
+
